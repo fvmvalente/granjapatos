@@ -1,0 +1,29 @@
+CREATE TABLE IF NOT EXISTS Cliente (
+ id BIGINT AUTO_INCREMENT PRIMARY KEY,
+ nome VARCHAR(255) NOT NULL,
+ ativo BOOLEAN NOT NULL,
+ tipo VARCHAR(255) NOT NULL
+ );
+
+ CREATE TABLE IF NOT EXISTS Venda (
+     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+     cliente_id BIGINT,
+     valor DECIMAL(10,2) NOT NULL,
+     data DATETIME NOT NULL,
+     ativo BOOLEAN NOT NULL,
+     tipo_cliente VARCHAR(20) NOT NULL,
+     FOREIGN KEY (cliente_id) REFERENCES Cliente(id)
+ );
+
+CREATE TABLE IF NOT EXISTS Pato (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    mae_id BIGINT,
+    venda_id BIGINT,
+    valor DECIMAL(10,2) NOT NULL,
+    tipo VARCHAR(20) NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    FOREIGN KEY (mae_id) REFERENCES Pato(id),
+    FOREIGN KEY (venda_id) REFERENCES Venda(id)
+);
+
