@@ -1,5 +1,5 @@
 
-# Gerenciamento de vendas em um granja de patos
+# Gerenciamento de vendas em uma granja de patos
 ## API Rest Backend Java
 
 ![Java](https://img.shields.io/badge/Java-v17-blue)
