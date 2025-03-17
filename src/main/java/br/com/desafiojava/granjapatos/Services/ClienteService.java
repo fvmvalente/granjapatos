@@ -10,6 +10,8 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -76,4 +78,10 @@ public class ClienteService {
         cliente.setAtivo(ativo);
         clienteRepository.save(cliente);
     }
+
+    public Page<ClienteDTO> buscarClientesPaginados(Pageable pageable) {
+        return clienteRepository.findAll(pageable)
+                .map(cliente -> modelMapper.map(cliente, ClienteDTO.class));
+    }
+
 }

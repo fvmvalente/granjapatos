@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 import java.net.URI;
 import java.util.List;
@@ -61,5 +64,12 @@ public class ClienteController {
         clienteService.alterarStatusCliente(id, ativo);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/paginado")
+    public ResponseEntity<Page<ClienteDTO>> buscarClientesPaginados(Pageable pageable) {
+        Page<ClienteDTO> clientesDTO = clienteService.buscarClientesPaginados(pageable);
+        return ResponseEntity.ok(clientesDTO);
+    }
+
 
 }
