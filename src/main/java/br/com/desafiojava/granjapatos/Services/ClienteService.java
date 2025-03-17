@@ -68,4 +68,12 @@ public class ClienteService {
     public void excluirCliente(@NotNull Long id) {
         clienteRepository.deleteById(id);
     }
+
+    public void alterarStatusCliente(Long id, Boolean ativo) {
+        Cliente cliente = clienteRepository.findClienteById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado."));
+
+        cliente.setAtivo(ativo);
+        clienteRepository.save(cliente);
+    }
 }

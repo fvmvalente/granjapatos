@@ -54,4 +54,12 @@ public class ClienteController {
         clienteService.excluirCliente(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}/status")
+    @Transactional
+    public ResponseEntity<Void> alterarStatusCliente(@PathVariable @NotNull Long id, @RequestParam @NotNull Boolean ativo) {
+        clienteService.alterarStatusCliente(id, ativo);
+        return ResponseEntity.ok().build();
+    }
+
 }
